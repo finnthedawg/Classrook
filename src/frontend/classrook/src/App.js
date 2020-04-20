@@ -9,7 +9,7 @@ const App = () => {
       <Grid item>
         <Header />
       </Grid>
-      <Grid item container justify="center">
+      <Grid item container justify="center" alignItems="center">
         <Grid item xs={false} sm={2} />
         <Grid item xs={12} sm={8}>
           <Content />
