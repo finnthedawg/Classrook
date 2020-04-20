@@ -1,18 +1,21 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
-import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
+import Button from '@material-ui/core/Button';
+import HelpIcon from '@material-ui/icons/Help';
+import IconButton from '@material-ui/core/IconButton';
+
 
 const useStyles = makeStyles((theme) => ({
+    
   root: {
     flexGrow: 1,
   },
-  menuButton: {
+  helpIcon: {
     marginRight: theme.spacing(2),
   },
   title: {
@@ -22,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
       display: 'block',
     },
     textAlign : "center",
+    fontSize : "24px",
   },
   search: {
     position: 'relative',
@@ -62,6 +66,9 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
+  loginButton:{
+    display: "block",
+  },
 }));
 
 export default function SearchAppBar() {
@@ -73,15 +80,20 @@ export default function SearchAppBar() {
         <Toolbar>
           <IconButton
             edge="start"
-            className={classes.menuButton}
+            className={classes.helpIcon}
             color="inherit"
             aria-label="open drawer"
           >
-            <MenuIcon />
+            <HelpIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
             ClassRook 
           </Typography>
+          <div classname={classes.loginButton}>
+          <Button variant="contained" color="primary">
+            Login
+          </Button>
+          </div>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
@@ -95,6 +107,7 @@ export default function SearchAppBar() {
               inputProps={{ 'aria-label': 'search' }}
             />
           </div>
+
         </Toolbar>
       </AppBar>
     </div>
