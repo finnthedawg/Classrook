@@ -1,0 +1,18 @@
+from django.db import models
+import pandas as pd
+
+import os
+
+# Create your models here.
+class Course(models.Model):
+    category = models.CharField(max_length=10)
+    code = models.CharField(max_length=10)
+    title = models.CharField(max_length=100)
+    description = models.CharField(max_length=1000)
+    reviews = models.IntegerField(default=0)
+    docs = models.IntegerField(default=0)
+
+class User(models.Model):
+    username = models.CharField(max_length=20)
+    email = models.EmailField()
+    credits = models.IntegerField(default=10)
