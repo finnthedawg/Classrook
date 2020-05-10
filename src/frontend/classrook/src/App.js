@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Redirect } from 'react-router-dom';
-import Landing from "./components/Landing"
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -62,7 +62,7 @@ class App extends Component {
 
   getContent() {
     if (this.state.isSignedIn) {
-      return (<Redirect to="/my-articles" />)
+      return <p>hello user, you're signed in </p>
     } else {
       return (
         <div>
