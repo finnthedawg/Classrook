@@ -4,7 +4,7 @@ import django
 django.setup()
 
 import pandas as pd
-from coursereview.models import Course
+from coursereview.models import Course, User
 
 if __name__ == '__main__':
 
@@ -15,3 +15,6 @@ if __name__ == '__main__':
     for ind, row in courses.iterrows():
         record = Course(category=row['Category'], code=row['Code'], title=row['Title'], description=row['Description'])
         record.save()
+
+    record = User(email='example@nyu.edu', username='Dummy')
+    record.save()

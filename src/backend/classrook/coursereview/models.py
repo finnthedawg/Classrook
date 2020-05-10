@@ -16,3 +16,15 @@ class User(models.Model):
     username = models.CharField(max_length=20)
     email = models.EmailField()
     credits = models.IntegerField(default=10)
+
+class Review(models.Model):
+    user_id = models.IntegerField(null=True)
+    course_id = models.IntegerField(null=True)
+    review = models.CharField(max_length=1000, null=True)
+    created_at = models.IntegerField()
+    last_modified = models.IntegerField(null=True)
+    upvotes = models.IntegerField(default=0, null=True)
+
+class ReviewUpvotes(models.Model):
+    user_id = models.IntegerField()
+    review_id = models.IntegerField()

@@ -1,6 +1,55 @@
+<h1>Serach course</h1>
+
 <form action="http://127.0.0.1:8000/courses/" method="POST">
   <div>
     <label for="say">Enter keywords to search course: </label>
     <input name="query" id="query">
   </div>
+</form>
+
+---
+<h1>Get user info</h1>
+
+<form action="http://127.0.0.1:8000/user/" method="POST">
+  <div>
+    <label for="say">Enter a user id to get user data: </label>
+    <input name="user_id" id="user_id">
+  </div>
+</form>
+
+---
+<h1>Post review</h1>
+
+<form action="http://127.0.0.1:8000/review/" method="POST">
+  <div>
+    <label for="say">Post a review: </label>
+    User ID: <input name="user_id" id="user_id"><br>
+    Course ID: <input name="course_id" id="course_id"><br>
+    Review: <input name='review' id='review'><br>
+  </div>
+  <button type="submit" value="Submit">Submit</button>
+</form>
+
+---
+<h1>Update review</h1>
+
+<form action="http://127.0.0.1:8000/review/" method="POST">
+  <div>
+    <label for="say">Update a review: </label>
+    Review ID: <input name="review_id" id="review_id"><br>
+    Review: <input name='review' id='review'><br>
+  </div>
+  <button type="submit" value="Submit">Submit</button>
+</form>
+
+---
+<h1>Upvote review</h1>
+
+<form action="http://127.0.0.1:8000/upvote/" method="POST">
+  <div>
+    <label for="say">Upvote a review: </label>
+    Review ID: <input name="review_id" id="review_id"><br>
+    User ID: <input name='user_id' id='user_id'><br>
+  </div>
+  <button type="submit" value="Submit">Submit</button>
 </form>
