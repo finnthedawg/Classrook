@@ -16,6 +16,10 @@ class ContentCard extends Component{
     console.log(this.state)
 
   }
+  
+  componentDidMount = () => {
+    console.log("component loaded")
+  }
 
   handleClick = () => {
     alert("Content coming soon!")

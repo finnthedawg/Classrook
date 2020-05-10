@@ -1,22 +1,91 @@
-import React from "react";
-import { Grid } from "@material-ui/core";
-import Header from "./components/Header"
-import Content from "./components/Content"
+import React, {Component} from 'react';
+import logo from './logo.svg';
+import './App.css';
+import { Redirect } from 'react-router-dom';
+import Landing from "./components/Landing"
+class App extends Component {
+  constructor(props) {
+    super(props);
 
-const App = () => {
-  return (
-    <Grid container direction="column">
-      <Grid item>
-        <Header />
-      </Grid>
-      <Grid item container justify="center" alignItems="center">
-        <Grid item xs={false} sm={2} />
-        <Grid item xs={12} sm={8}>
-          <Content />
-        </Grid>
-      </Grid>
-    </Grid>
-  );
-};
+    this.state = {
+      isSignedIn: false,
+    }
+    
+  }
 
-export default App;
+  componentDidMount() {
+
+    const successCallback = this.onSuccess.bind(this);
+    
+    window.gapi.load('auth2', () => {
+      this.auth2 = window.gapi.auth2.init({
+        client_id: '905854699284-dtmkc21n3alikca15cs78eeicmq9mioq.apps.googleusercontent.com',
+      })
+
+      // this.auth2.attachClickHandler(document.querySelector('#loginButton'), {}, this.onLoginSuccessful.bind(this))
+
+      this.auth2.then(() => {
+        console.log('on init');
+        this.setState({
+          isSignedIn: this.auth2.isSignedIn.get(),
+        });
+      });
+    });    
+
+    window.gapi.load('signin2', function() {
+      // Method 3: render a sign in button
+      // using this method will show Signed In if the user is already signed in
+      var opts = {
+        width: 200,
+        height: 50,
+        client_id: '905854699284-dtmkc21n3alikca15cs78eeicmq9mioq.apps.googleusercontent.com',
+        onsuccess: successCallback
+      }
+      window.gapi.signin2.render('loginButton', opts)
+    })
+  }
+
+  onSuccess() {
+    console.log('on success')
+    this.setState({
+      isSignedIn: true,
+      err: null
+    })
+  }
+
+  onLoginFailed(err) {
+    this.setState({
+      isSignedIn: false,
+      error: err,
+    })
+  }
+
+  getContent() {
+    if (this.state.isSignedIn) {
+      return (<Redirect to="/my-articles" />)
+    } else {
+      return (
+        <div>
+          <p>You are not signed in. Click here to sign in.</p>
+          <button id="loginButton">Login with Google</button>
+        </div>
+      )
+    }
+    
+  }
+  
+  render() {
+    return (      
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <h2>Sample App.</h2>
+
+          {this.getContent()}           
+        </header>
+      </div>
+    );
+  }
+}
+
+export default App; 
