@@ -2,9 +2,13 @@
 
 ## Initial setup
 Step 0: Install `django` and `rest_framework`
+
 Step 1: `python manage.py makemigrations`
+
 Step 2: `python manage.py migrate`
+
 Step 3: `python setup_db.py`
+
 Step 4: `python manage.py runserver`
 
 To test: open `test.html` in browser
@@ -41,6 +45,6 @@ To test: open `test.html` in browser
 - last_modified: int (seconds since epoch)
 - upvotes: int
 
-# TODOs
+## TODOs
 [ ] User registration
 [x] Each user can only upvote a review once
