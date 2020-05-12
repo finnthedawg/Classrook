@@ -1,9 +1,9 @@
 export default [
-    {
-        title: "Courses",
-        description : "View All Courses",
-        imageUrl : "https://disfold.com/wp-content/uploads/2019/08/online-courses-stock-investment-trading.jpg",
-    },
+    // {
+    //     title: "Courses",
+    //     description : "View All Courses",
+    //     imageUrl : "https://disfold.com/wp-content/uploads/2019/08/online-courses-stock-investment-trading.jpg",
+    // },
     {
         title: "Reviews",
         description : "View All Reviews",

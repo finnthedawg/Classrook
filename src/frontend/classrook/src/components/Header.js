@@ -26,7 +26,7 @@ const useStyles = theme => ({
       display: 'block',
     },
     textAlign : "center",
-    fontSize : "24px",
+    fontSize : "36px",
   },
   search: {
     position: 'relative',
@@ -119,20 +119,6 @@ class SearchAppBar extends Component{
           <Typography className={classes.loginButton} variant="h6" noWrap onClick={this.handleUserClick}>
             Welcome {sessionStorage.getItem("user")}!
           </Typography>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </div>
-
         </Toolbar>
       </AppBar>
     </div>
