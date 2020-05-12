@@ -70,6 +70,28 @@ def user_info(request):
 
 @csrf_exempt
 @api_view(['GET', 'POST'])
+def user_info_by_email(request):
+    print(request)
+    queryset = User.objects.all()
+    serializer = UserSerializer(queryset, many=True)
+
+    # if 'user_id' not in request.data:
+    #     return JsonResponse({'': ''}, status=status.HTTP_404_NOT_FOUND)
+
+    # try:
+    #     uid = int(request.data['user_id'])
+    # except Exception as e:
+    #     print(e)
+    #     return JsonResponse({'': ''}, status=status.HTTP_404_NOT_FOUND)
+
+    for d in serializer.data:
+        if d['email'] == request.data['email']:
+            return JsonResponse(d, safe=False)
+
+    return JsonResponse({'email': 'notfound'},)
+
+@csrf_exempt
+@api_view(['GET', 'POST'])
 def post_review(request):
 
     try:
@@ -134,3 +156,33 @@ def upvote_review(request):
 
     serializer = ReviewSerializer(review)
     return JsonResponse(serializer.data, safe=False)
+
+
+@csrf_exempt
+@api_view(['GET', 'POST'])
+def post_user(request):
+    print(request)  
+
+    try:
+        user = User.objects.create()
+        user_id = int(request.data['user_id'])
+        username = request.data['username']
+        email = request.data['email']
+        credits = 10
+
+        user.user_id = user_id
+        user.username = username
+        user.email = email
+        user.credits = credits
+
+        user.save()
+        print(user)
+        all_users = User.objects.filter(user_id=user_id)
+        serializer = UserSerializer(all_users, many=True)
+
+        return JsonResponse({'reviews': serializer.data}, safe=False)
+    except Exception as e:
+        print(e)
+        return JsonResponse({'': ''}, status=status.HTTP_404_NOT_FOUND)
+
+

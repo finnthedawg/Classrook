@@ -13,6 +13,7 @@ class Course(models.Model):
     docs = models.IntegerField(default=0)
 
 class User(models.Model):
+    user_id = models.IntegerField(null=True)
     username = models.CharField(max_length=20)
     email = models.EmailField()
     credits = models.IntegerField(default=10)

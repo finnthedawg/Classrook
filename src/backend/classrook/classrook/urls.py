@@ -29,5 +29,7 @@ urlpatterns = [
     path('user/', views.user_info),
     path('review/', views.post_review),
     path('upvote/', views.upvote_review),
+    path('add_user/', views.post_user),
+    path('get_by_email/', views.user_info_by_email)
     #path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
