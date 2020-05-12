@@ -5,6 +5,8 @@ import ErrorPage from './components/404';
 import './App.css'
 import Login from './components/Login';
 import Content from './components/Content'
+import Majors from './components/Majors'
+import Reviews from './components/Reviews'
 
 const Refresh = ({ path = '/' }) => (
     <Route
@@ -55,6 +57,8 @@ class App extends Component {
                     <Switch>
                         <AuthenticatedRoute exact path="/" component={Login} />
                         <AuthenticatedRoute exact path="/content" component={Content} />
+                        <AuthenticatedRoute exact path="/majors" component={Majors} />
+                        <AuthenticatedRoute exact path="/reviews" component={Reviews} />
                         <Refresh path="/refresh" />
                         <AuthenticatedRoute component={ErrorPage} />
                         {/* <Refresh /> */}

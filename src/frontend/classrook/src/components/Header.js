@@ -8,7 +8,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
 import HelpIcon from '@material-ui/icons/Help';
 import IconButton from '@material-ui/core/IconButton';
-
+import {TextField} from '@material-ui/core' 
 
 const useStyles = makeStyles((theme) => ({
     
@@ -78,22 +78,12 @@ export default function SearchAppBar() {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.helpIcon}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <HelpIcon />
-          </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
             ClassRook 
           </Typography>
-          <div classname={classes.loginButton}>
-          <Button variant="contained" color="primary">
-            Login
-          </Button>
-          </div>
+          <Typography className={classes.loginButton} variant="h6" noWrap>
+            Welcome {sessionStorage.getItem("user")}!
+          </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />

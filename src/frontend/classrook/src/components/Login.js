@@ -40,6 +40,8 @@ class Login extends Component {
                     console.log(response)
                     if (response.data.email !== "notfound") {
                         sessionStorage.setItem("user", response.data.username)
+                        sessionStorage.setItem("user_id", response.data.id)
+                        sessionStorage.setItem("email", response.data.email)
                         this.setState({
                             auth: true,
                         })
@@ -58,7 +60,7 @@ class Login extends Component {
     render() {
         const { classes } = this.props
 
-        if (this.state.auth !== true && sessionStorage.getItem("username") === null) {
+        if (this.state.auth !== true && sessionStorage.getItem("user") === null) {
             return (
                 <div className={classes.container}>
                     <div className={classes.subcontainer}>
