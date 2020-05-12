@@ -3,7 +3,7 @@ import { GoogleLogin } from 'react-google-login';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import { withStyles, Typography } from '@material-ui/core';
-
+import Classrook from './classrook.png'
 const styles = theme => ({
     container: {
         width: "100vw",
@@ -42,6 +42,7 @@ class Login extends Component {
                         sessionStorage.setItem("user", response.data.username)
                         sessionStorage.setItem("user_id", response.data.id)
                         sessionStorage.setItem("email", response.data.email)
+                        sessionStorage.setItem("credits", response.data.credits)
                         this.setState({
                             auth: true,
                         })
@@ -64,6 +65,7 @@ class Login extends Component {
             return (
                 <div className={classes.container}>
                     <div className={classes.subcontainer}>
+                    <img src={Classrook} alt="classrooklogo"/>
                         <Typography variant="h3" className={classes.typo}>Welcome to Classrook!</Typography>
                         <GoogleLogin
                             clientId="905854699284-dtmkc21n3alikca15cs78eeicmq9mioq.apps.googleusercontent.com"

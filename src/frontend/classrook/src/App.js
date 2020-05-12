@@ -7,6 +7,7 @@ import Login from './components/Login';
 import Content from './components/Content'
 import Majors from './components/Majors'
 import Reviews from './components/Reviews'
+import User from './components/User'
 
 const Refresh = ({ path = '/' }) => (
     <Route
@@ -59,6 +60,7 @@ class App extends Component {
                         <AuthenticatedRoute exact path="/content" component={Content} />
                         <AuthenticatedRoute exact path="/majors" component={Majors} />
                         <AuthenticatedRoute exact path="/reviews" component={Reviews} />
+                        <AuthenticatedRoute exact path="/user" component={User} />
                         <Refresh path="/refresh" />
                         <AuthenticatedRoute component={ErrorPage} />
                         {/* <Refresh /> */}

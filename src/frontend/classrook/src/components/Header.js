@@ -1,16 +1,17 @@
-import React from 'react';
+import React, {Component} from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core'
 import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
 import HelpIcon from '@material-ui/icons/Help';
 import IconButton from '@material-ui/core/IconButton';
 import {TextField} from '@material-ui/core' 
-
-const useStyles = makeStyles((theme) => ({
+import {Redirect} from 'react-router-dom'
+const useStyles = theme => ({
     
   root: {
     flexGrow: 1,
@@ -69,19 +70,53 @@ const useStyles = makeStyles((theme) => ({
   loginButton:{
     display: "block",
   },
-}));
+});
 
-export default function SearchAppBar() {
-  const classes = useStyles();
+class SearchAppBar extends Component{
+  constructor(props){
+    super(props)
+    this.state = {
+      user_clicked : false,
+      title_clicked : false,
+    }
+  }
 
+  handleUserClick = () => {
+    this.setState({
+      user_clicked: true
+    })
+  }
+
+  handleTitleClick = () =>{
+    // alert("username clicked!")
+    this.setState({
+      title_clicked : true
+    })
+  }
+
+  render(){
+  const { classes } = this.props
+  console.log(classes)
+  if(this.state.title_clicked){
+    this.setState({
+      title_clicked : false
+    })
+    return (<Redirect to={'/content'} />)
+  }
+  if(this.state.user_clicked){
+    this.setState({
+      user_clicked : false
+    })
+    return (<Redirect to={'/user'} />)
+  }
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <Typography className={classes.title} variant="h6" noWrap>
+          <Typography className={classes.title} variant="h6" noWrap onClick={this.handleTitleClick}>
             ClassRook 
           </Typography>
-          <Typography className={classes.loginButton} variant="h6" noWrap>
+          <Typography className={classes.loginButton} variant="h6" noWrap onClick={this.handleUserClick}>
             Welcome {sessionStorage.getItem("user")}!
           </Typography>
           <div className={classes.search}>
@@ -102,4 +137,6 @@ export default function SearchAppBar() {
       </AppBar>
     </div>
   );
+  }
 }
+export default withStyles(useStyles)(SearchAppBar);
