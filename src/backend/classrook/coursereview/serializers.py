@@ -1,6 +1,6 @@
 from django.contrib.auth.models import Group
 from rest_framework import serializers
-from coursereview.models import Course, User, Review, ReviewUpvotes
+from coursereview.models import Course, User, Review, ReviewUpvotes, Document
 
 class CourseSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -21,3 +21,8 @@ class ReviewUpvotesSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = ReviewUpvotes
         fields = ['id', 'user_id', 'review_id']
+
+class DocumentSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Document
+        fields = ['id', 'uploader_id', 'file', 'credit', 'course_id']
