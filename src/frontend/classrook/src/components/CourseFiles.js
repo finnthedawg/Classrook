@@ -75,7 +75,7 @@ class CourseFiles extends Component{
             <CourseInfoCard {...this.state.courseInfo} />
         </Grid>
         <Grid item>
-            <DropFile/>
+            <DropFile {...this.state.courseInfo}/>
         </Grid>
       </Grid>
         </>

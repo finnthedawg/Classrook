@@ -255,6 +255,10 @@ def upload_file(request):
     with open(f'./coursereview/data/{doc.id}', 'w+') as f:
         f.write(file)
 
+    user = User.objects.get(id=user_id)
+    user.credits += 1
+    user.save()
+    
     all_docs = Document.objects.filter(course_id=course_id)
     serializer = DocumentSerializer(all_docs, many=True)
 
