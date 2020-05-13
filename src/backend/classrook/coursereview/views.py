@@ -6,8 +6,8 @@ from rest_framework import viewsets, status, permissions
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.request import Request
-from coursereview.serializers import UserSerializer, CourseSerializer, ReviewSerializer
-from coursereview.models import Course, User, Review, ReviewUpvotes
+from coursereview.serializers import UserSerializer, CourseSerializer, ReviewSerializer, DocumentSerializer
+from coursereview.models import Course, User, Review, ReviewUpvotes, Document
 
 import random
 import time
@@ -55,7 +55,7 @@ def get_exact_course(request):
 
     for d in serializer.data:
         if d['id'] == int(request.data['id']):
-            return JsonResponse(d, safe=False) 
+            return JsonResponse(d, safe=False)
 
 
 @csrf_exempt
@@ -215,7 +215,7 @@ def upvote_review(request):
 @csrf_exempt
 @api_view(['GET', 'POST'])
 def post_user(request):
-    print(request)  
+    print(request)
 
     try:
         user = User.objects.create()
@@ -239,4 +239,20 @@ def post_user(request):
         print(e)
         return JsonResponse({'': ''}, status=status.HTTP_404_NOT_FOUND)
 
+@csrf_exempt
+@api_view(['GET', 'POST'])
+def upload_file(request):
+    print(request)
+    credit = int(request.data['credit'])
+    user_id = int(request.data['user_id'])
+    course_id = int(request.data['course_id'])
+    file = request.data['file']
 
+    print(file)
+    doc = Document.objects.create(credit=credit, uploader_id=user_id, course_id=course_id, file=file)
+    doc.save()
+
+    all_docs = Document.objects.filter(course_id=course_id)
+    serializer = DocumentSerializer(all_docs, many=True)
+
+    return JsonResponse({'docs': serializer.data})

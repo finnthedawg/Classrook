@@ -29,3 +29,9 @@ class Review(models.Model):
 class ReviewUpvotes(models.Model):
     user_id = models.IntegerField()
     review_id = models.IntegerField()
+
+class Document(models.Model):
+    uploader_id = models.IntegerField(null=True)
+    course_id = models.IntegerField(null=True)
+    credit = models.IntegerField(default=0)
+    file = models.FileField()

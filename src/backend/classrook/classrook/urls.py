@@ -33,6 +33,7 @@ urlpatterns = [
     path('get_by_email/', views.user_info_by_email),
     path('course_by_code/',views.course_info_by_code),
     path('get_exact_course/', views.get_exact_course),
-    path('review_by_course_id/', views.review_info_by_course_id)
+    path('review_by_course_id/', views.review_info_by_course_id),
+    path('upload_document/', views.upload_file),
     #path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
