@@ -35,5 +35,6 @@ urlpatterns = [
     path('get_exact_course/', views.get_exact_course),
     path('review_by_course_id/', views.review_info_by_course_id),
     path('upload_document/', views.upload_file),
+    path('download_document/', views.download_file),
     #path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
