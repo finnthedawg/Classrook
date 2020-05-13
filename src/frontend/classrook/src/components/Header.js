@@ -117,7 +117,7 @@ class SearchAppBar extends Component{
             ClassRook 
           </Typography>
           <Typography className={classes.loginButton} variant="h6" noWrap onClick={this.handleUserClick}>
-            Welcome {sessionStorage.getItem("user")}!
+              Welcome {sessionStorage.getItem("user")}! | Credits: {sessionStorage.getItem("credits")}
           </Typography>
         </Toolbar>
       </AppBar>

@@ -93,10 +93,9 @@ class CreateReview extends Component {
 
 
         axios.post(`http://localhost:8000/review/`,reviewJSON) //update with correct string
-
+        sessionStorage.setItem("credits", parseInt(sessionStorage.getItem("credits"))+1)
     }
 
-    
     getPublishButton = (classes) => {
         return <Button onClick={this.handlePost} className={classes.preview}> Post Review </Button>
     }
