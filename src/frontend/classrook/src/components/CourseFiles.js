@@ -16,6 +16,7 @@ import { Grid } from "@material-ui/core";
 import CourseInfoCard from "./CourseInfoCard";
 import ReviewCard from './ReviewCard';
 import CreateReview from './CreateReview';
+import DropFile from './DropFile';
 
 const useStyles = makeStyles({
     root: {
@@ -74,7 +75,7 @@ class CourseFiles extends Component{
             <CourseInfoCard {...this.state.courseInfo} />
         </Grid>
         <Grid item>
-            <div>Files go here</div>
+            <DropFile/>
         </Grid>
       </Grid>
         </>
