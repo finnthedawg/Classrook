@@ -10,13 +10,14 @@ import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import { withStyles} from '@material-ui/core';
 import axios from 'axios';
-
+import Divider from '@material-ui/core/Divider';
 import CourseCard from "./CourseCard";
 import { Grid } from "@material-ui/core";
 import CourseInfoCard from "./CourseInfoCard";
 import ReviewCard from './ReviewCard';
 import CreateReview from './CreateReview';
 import DropFile from './DropFile';
+import SimpleList from './FileList';
 
 const useStyles = makeStyles({
     root: {
@@ -76,6 +77,10 @@ class CourseFiles extends Component{
         </Grid>
         <Grid item>
             <DropFile {...this.state.courseInfo}/>
+        </Grid>
+        <Divider/>
+        <Grid item>
+            <SimpleList />
         </Grid>
       </Grid>
         </>

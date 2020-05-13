@@ -144,6 +144,29 @@ def review_info_by_course_id(request):
             reviews.append(d)
     return JsonResponse(reviews, safe=False)
 
+
+@csrf_exempt
+@api_view(['GET', 'POST'])
+def files_by_course_id(request):
+    print(request.data)
+    queryset = Document.objects.all()
+    serializer = DocumentSerializer(queryset, many=True)
+
+    # if 'user_id' not in request.data:
+    #     return JsonResponse({'': ''}, status=status.HTTP_404_NOT_FOUND)
+
+    # try:
+    #     uid = int(request.data['user_id'])
+    # except Exception as e:
+    #     print(e)
+    #     return JsonResponse({'': ''}, status=status.HTTP_404_NOT_FOUND)
+    files = []
+    for d in serializer.data:
+        if d['course_id'] == int(request.data['course_id']):
+            files.append(d)
+    return JsonResponse(files, safe=False)
+
+
 @csrf_exempt
 @api_view(['GET', 'POST'])
 def post_review(request):
@@ -278,3 +301,5 @@ def download_file(request):
         return response
 
     return JsonResponse({'': ''}, status=status.HTTP_404_NOT_FOUND)
+
+
