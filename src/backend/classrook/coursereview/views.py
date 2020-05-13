@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User, Group
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, FileResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpRequest, Http404
 from rest_framework import viewsets, status, permissions
@@ -252,7 +252,25 @@ def upload_file(request):
     doc = Document.objects.create(credit=credit, uploader_id=user_id, course_id=course_id, file=file)
     doc.save()
 
+    with open(f'./coursereview/data/{doc.id}', 'w+') as f:
+        f.write(file)
+
     all_docs = Document.objects.filter(course_id=course_id)
     serializer = DocumentSerializer(all_docs, many=True)
 
     return JsonResponse({'docs': serializer.data})
+
+@csrf_exempt
+@api_view(['GET', 'POST'])
+def download_file(request):
+    doc_id = int(request.data['file_id'])
+
+    doc = Document.objects.get(id=doc_id)
+
+    with open(f'./coursereview/data/{doc.id}', 'r') as f:
+        response = FileResponse(f.read(), content_type='whatever')
+        response['Content-Disposition'] = doc.file
+
+        return response
+
+    return JsonResponse({'': ''}, status=status.HTTP_404_NOT_FOUND)
