@@ -52,8 +52,7 @@ class CourseCard extends Component{
   render(){
     const { classes } = this.props
     if (this.state.card_clicked) {
-            // return (<Redirect to={`/majors/${this.props.category}/${this.props.id}`} />)
-            alert("coming soon!")
+            return (<Redirect to={`/majors/${this.props.category}/${this.props.id}`} />)
     }
     return (
         <Card className={classes.root} variant="outlined">

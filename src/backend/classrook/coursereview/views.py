@@ -49,6 +49,17 @@ def course_list(request):
 
 @csrf_exempt
 @api_view(['GET', 'POST'])
+def get_exact_course(request):
+    queryset = Course.objects.all().order_by('category')
+    serializer = CourseSerializer(queryset, many=True)
+
+    for d in serializer.data:
+        if d['id'] == int(request.data['id']):
+            return JsonResponse(d, safe=False) 
+
+
+@csrf_exempt
+@api_view(['GET', 'POST'])
 def user_info(request):
     queryset = User.objects.all()
     serializer = UserSerializer(queryset, many=True)

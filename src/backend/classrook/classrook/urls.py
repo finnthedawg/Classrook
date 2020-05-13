@@ -31,6 +31,7 @@ urlpatterns = [
     path('upvote/', views.upvote_review),
     path('add_user/', views.post_user),
     path('get_by_email/', views.user_info_by_email),
-    path('course_by_code/',views.course_info_by_code)
+    path('course_by_code/',views.course_info_by_code),
+    path('get_exact_course/', views.get_exact_course)
     #path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]

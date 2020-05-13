@@ -67,21 +67,6 @@ class indMajor extends Component{
       }
   }
 
-  Cat = () => {
-    const getContentCard = contentCardObj => {
-      return (
-        <Grid item xs={12} sm={4}>
-          <CourseCard {...contentCardObj} />
-        </Grid>
-      );
-    };
-  
-    return (
-      <Grid container spacing={8}>
-        {this.state.courses.map(contentCardObj => getContentCard(contentCardObj))}
-      </Grid>
-    );
-  };
 
   handleClick = () => {
       console.log(this.state.courses)
