@@ -177,7 +177,7 @@ def post_review(request):
         all_reviews = Review.objects.filter(course_id=course_id)
         serializer = ReviewSerializer(all_reviews, many=True)
 
-        return JsonResponse({'reviews': serializer.data}, safe=False)
+        return JsonResponse({'reviews': serializer.data[::-1]}, safe=False)
     except Exception as e:
         print(e)
         return JsonResponse({'': ''}, status=status.HTTP_404_NOT_FOUND)

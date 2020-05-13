@@ -88,7 +88,7 @@ class CourseInfo extends Component{
         </Grid>
      
         <Grid item>
-            <CreateReview/>
+            <CreateReview />
         </Grid>
         <Grid item>
             <br/>
