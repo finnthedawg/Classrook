@@ -92,6 +92,28 @@ def user_info_by_email(request):
 
 @csrf_exempt
 @api_view(['GET', 'POST'])
+def course_info_by_code(request):
+    print(request.data)
+    queryset = Course.objects.all()
+    serializer = CourseSerializer(queryset, many=True)
+
+    # if 'user_id' not in request.data:
+    #     return JsonResponse({'': ''}, status=status.HTTP_404_NOT_FOUND)
+
+    # try:
+    #     uid = int(request.data['user_id'])
+    # except Exception as e:
+    #     print(e)
+    #     return JsonResponse({'': ''}, status=status.HTTP_404_NOT_FOUND)
+    courses = []
+    for d in serializer.data:
+        if d['category'] == request.data['id']:
+            print(d)
+            courses.append(d)
+    return JsonResponse(courses, safe=False)
+
+@csrf_exempt
+@api_view(['GET', 'POST'])
 def post_review(request):
 
     try:

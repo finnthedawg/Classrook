@@ -8,6 +8,8 @@ import Content from './components/Content'
 import Majors from './components/Majors'
 import Reviews from './components/Reviews'
 import User from './components/User'
+import indMajor from './components/indMajor'
+import Course from './components/CourseCard'
 
 const Refresh = ({ path = '/' }) => (
     <Route
@@ -61,6 +63,8 @@ class App extends Component {
                         <AuthenticatedRoute exact path="/majors" component={Majors} />
                         <AuthenticatedRoute exact path="/reviews" component={Reviews} />
                         <AuthenticatedRoute exact path="/user" component={User} />
+                        <AuthenticatedRoute exact path="/majors/:id" component={indMajor} />
+                        <AuthenticatedRoute exact path="/majors/:id/:code" component={Course} />
                         <Refresh path="/refresh" />
                         <AuthenticatedRoute component={ErrorPage} />
                         {/* <Refresh /> */}
