@@ -118,11 +118,17 @@ class CreateReview extends Component {
 
     }
 
+    uploadFile = () => {
+
+    }
 
     showTitle = () => {
             return <Typography variant='h5' style={{ marginBottom: '0%', marginTop: '1%' }}> Create a new Review </Typography>
         }
     
+    showUpload = () => {
+            return <Typography variant='h5' style={{ marginBottom: '0%', marginTop: '1%' }}> Upload a file </Typography>
+    }
     handleChange = (e) => {
         this.setState({
             review: e.target.value
@@ -158,7 +164,6 @@ class CreateReview extends Component {
                 <br/>
                 <br/>
                 {this.showButtons(classes)}
-
             </div >
         );
     }

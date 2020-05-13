@@ -11,6 +11,7 @@ import User from './components/User'
 import indMajor from './components/indMajor'
 import Course from './components/CourseCard'
 import CourseInfo from './components/CourseInfo'
+import CourseFiles from './components/CourseFiles'
 const Refresh = ({ path = '/' }) => (
     <Route
         path={path}
@@ -65,6 +66,7 @@ class App extends Component {
                         <AuthenticatedRoute exact path="/user" component={User} />
                         <AuthenticatedRoute exact path="/majors/:id" component={indMajor} />
                         <AuthenticatedRoute exact path="/majors/:id/:id" component={CourseInfo} />
+                        <AuthenticatedRoute exact path="/majors/:id/:id/files" component={CourseFiles} />
                         <Refresh path="/refresh" />
                         <AuthenticatedRoute component={ErrorPage} />
                         {/* <Refresh /> */}

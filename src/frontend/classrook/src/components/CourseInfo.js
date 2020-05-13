@@ -10,7 +10,7 @@ import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import { withStyles} from '@material-ui/core';
 import axios from 'axios';
-
+import { createMuiTheme } from '@material-ui/core/styles';
 import CourseCard from "./CourseCard";
 import { Grid } from "@material-ui/core";
 import CourseInfoCard from "./CourseInfoCard";
@@ -41,7 +41,8 @@ class CourseInfo extends Component{
     console.log(this.props)
     this.state = { 
     courseInfo : [],
-    reviews : []
+    reviews : [],
+    filesView : false
     }
   }
   
@@ -78,15 +79,54 @@ class CourseInfo extends Component{
       console.log(this.state.reviews)
   }
 
+  handleUploadClick = () => {
+    this.setState({
+        filesView : true
+    })
+    console.log("upload clicked")
+  }
+
+    returnTheme = () => {
+    const theme = createMuiTheme({
+        palette: {
+            primary: {
+                main: '#2E3B55',
+            },
+        },
+    });
+    return theme    
+    }
+
+  showUpload = () => {
+    const theme = this.returnTheme()
+    const styles = {
+    preview: {
+        marginTop: theme.spacing(5),
+        marginBottom: theme.spacing(2),
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(1),
+        background: '#2E3B55',
+        color: 'white',
+        '&:hover': {
+            background: '#586481',
+        },
+    }
+}
+     return <Button onClick={this.handleUploadClick} className={styles.preview}> View Files </Button>
+  }
+
+
   render(){
-   
+    if(this.state.filesView){
+        return (<Redirect to={`/majors/${this.state.courseInfo.category}/${this.state.courseInfo.id}/files`} />)
+    }
     return(
         <>
         <Grid container direction="column">
         <Grid item>
             <CourseInfoCard {...this.state.courseInfo} />
         </Grid>
-     
+        {this.showUpload()}
         <Grid item>
             <CreateReview />
         </Grid>
