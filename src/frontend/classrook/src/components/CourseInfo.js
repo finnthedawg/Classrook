@@ -70,6 +70,8 @@ class CourseInfo extends Component{
 
   handleClick = () => {
       console.log(this.state.courseInfo)
+      console.log("here are the reviews")
+      console.log(this.state.reviews)
   }
 
   render(){

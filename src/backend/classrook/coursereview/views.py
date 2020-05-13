@@ -140,7 +140,7 @@ def review_info_by_course_id(request):
     #     return JsonResponse({'': ''}, status=status.HTTP_404_NOT_FOUND)
     reviews = []
     for d in serializer.data:
-        if d['course_id'] == request.data['id']:
+        if d['course_id'] == int(request.data['id']):
             reviews.append(d)
     return JsonResponse(reviews, safe=False)
 
