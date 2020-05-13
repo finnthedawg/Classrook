@@ -14,7 +14,7 @@ class Reviews extends Component{
 
     render(){
         return(
-            <div>Reviews Here</div>
+            <div>Here are the reviews</div>
         );
     }
 };

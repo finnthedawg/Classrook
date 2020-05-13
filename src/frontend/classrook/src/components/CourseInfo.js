@@ -13,6 +13,9 @@ import axios from 'axios';
 
 import CourseCard from "./CourseCard";
 import { Grid } from "@material-ui/core";
+import CourseInfoCard from "./CourseInfoCard";
+import ReviewCard from './ReviewCard';
+import CreateReview from './CreateReview';
 
 const useStyles = makeStyles({
     root: {
@@ -44,6 +47,7 @@ class CourseInfo extends Component{
   
   componentDidMount = () => {
     const id = this.props.match.params.id
+    sessionStorage.setItem("course_id",this.props.match.params.id)
     axios.post('http://localhost:8000/get_exact_course/', {id})
         .then(response => {
             console.log(response.data)
@@ -77,7 +81,38 @@ class CourseInfo extends Component{
   render(){
    
     return(
-        <div onClick={this.handleClick}>This is a course</div> 
+        <>
+        <Grid container direction="column">
+        <Grid item>
+            <CourseInfoCard {...this.state.courseInfo} />
+        </Grid>
+     
+        <Grid item>
+            <CreateReview/>
+        </Grid>
+        <Grid item>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+        </Grid>
+        <Grid item container justify="center" alignItems="center">
+        <Grid item xs={false} sm={2} />
+        <Grid container spacing={8}>
+            {this.state.reviews.map(contentCardObj => 
+                <Grid item xs={12} sm={4}>
+                <ReviewCard {...contentCardObj} />
+            </Grid>
+            )}
+        </Grid>
+      </Grid>
+      </Grid>
+        </>
     );
   }
 }
