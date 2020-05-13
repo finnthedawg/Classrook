@@ -125,6 +125,27 @@ def course_info_by_code(request):
 
 @csrf_exempt
 @api_view(['GET', 'POST'])
+def review_info_by_course_id(request):
+    print(request.data)
+    queryset = Review.objects.all()
+    serializer = ReviewSerializer(queryset, many=True)
+
+    # if 'user_id' not in request.data:
+    #     return JsonResponse({'': ''}, status=status.HTTP_404_NOT_FOUND)
+
+    # try:
+    #     uid = int(request.data['user_id'])
+    # except Exception as e:
+    #     print(e)
+    #     return JsonResponse({'': ''}, status=status.HTTP_404_NOT_FOUND)
+    reviews = []
+    for d in serializer.data:
+        if d['course_id'] == request.data['id']:
+            reviews.append(d)
+    return JsonResponse(reviews, safe=False)
+
+@csrf_exempt
+@api_view(['GET', 'POST'])
 def post_review(request):
 
     try:

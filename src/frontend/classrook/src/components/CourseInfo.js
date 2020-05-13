@@ -36,22 +36,46 @@ class CourseInfo extends Component{
     super(props)
     console.log("here are the props")
     console.log(this.props)
-    
-
-
+    this.state = { 
+    courseInfo : [],
+    reviews : []
+    }
   }
   
   componentDidMount = () => {
-    console.log("component mounted")
+    const id = this.props.match.params.id
+    axios.post('http://localhost:8000/get_exact_course/', {id})
+        .then(response => {
+            console.log(response.data)
+            this.setState({
+                courseInfo: response.data
+            })
+        })
+        .catch(error => {
+            console.log("ERROR in Category loading ", error)
+        })
+    axios.post('http://localhost:8000/review_by_course_id/', {id})
+    .then(response => {
+        console.log(response.data)
+        this.setState({
+            reviews: response.data
+        })
+    })
+    .catch(error => {
+        console.log("ERROR in Category loading ", error)
+    })
+
   }
 
 
-
+  handleClick = () => {
+      console.log(this.state.courseInfo)
+  }
 
   render(){
    
     return(
-        <div>This is a course</div> 
+        <div onClick={this.handleClick}>This is a course</div> 
     );
   }
 }
