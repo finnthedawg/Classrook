@@ -45,7 +45,7 @@ def course_list(request):
         keywords = request.data['query'].split(' ')
         res_course = search_course(keywords, serializer.data)
 
-        return JsonResponse({'courses': res_course[:5]}, safe=False)
+        return JsonResponse(res_course[:5], safe=False)
 
 @csrf_exempt
 @api_view(['GET', 'POST'])

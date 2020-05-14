@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
+import Search from './Search';
 
 class Reviews extends Component{
     constructor(props){
@@ -14,7 +15,7 @@ class Reviews extends Component{
 
     render(){
         return(
-            <div>Here are the reviews</div>
+            <Search/>
         );
     }
 };
